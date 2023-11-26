@@ -1,0 +1,2 @@
+{ "workitems": [
+    [{ "from": null, "op": "add", "path": "/fields/System.Title", "value": "Sample task 1" }, { "from": null, "op": "add", "path": "/fields/System.Description", "value": "This is the description for sample task 1" }], [{ "from": null, "op": "add", "path": "/fields/System.Title", "value": "Sample task 2" }, { "from": null, "op": "add", "path": "/fields/System.Description", "value": "This is the description for sample task 2" }]] }
