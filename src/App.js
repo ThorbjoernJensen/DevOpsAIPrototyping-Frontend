@@ -1,18 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import './styles/index.css';
 import facade from './apiFacade';
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UserInput from './components/UserInput';
 import WorkItems from './components/WorkItems';
 import ChatResponse from './components/ChatResponse';
 
 function App() {
-  const [chatResponse, setChatResponse] = useState("");
+  const [chatResponse, setChatResponse] = useState("What kind of software would you like to sketch?");
   const [errorMessage, setErrorMessage] = useState("No Errors");
-  const [userInput, setUserInput] = useState({input: "Hello"});
+  const [userInput, setUserInput] = useState({ input: "Hello" });
   const [workItems, setWorkItems] = useState([]);
-  
+
 
   // const postChatRequest = async () => {
   //     await facade.fetchData("", setChatResponse, "POST", "Hello AI", setErrorMessage);
@@ -33,9 +33,9 @@ function App() {
   //   console.log(data);
   //   return data;
   // };
-  
-  
-  
+
+
+
   // useEffect((userInput) => {
   //   const getChatResponse = async (userInput) => {
   //     const chatResponse = await postChatRequest(userInput);
@@ -46,7 +46,7 @@ function App() {
   // }, []);
 
   const postChatRequest = async (userInput) => {
-    console.log("fetch på vej - her er userInput: "+ JSON.stringify(userInput))
+    console.log("fetch på vej - her er userInput: " + JSON.stringify(userInput))
     const res = await fetch("http://localhost:7157/api/Function1", {
       // const res = await fetch("https://fa-aifetcher.azurewebsites.net/api/Function1?code=g7yDsjjjFCNilMDgeukje-awi2R6FyoDhnpbyAuHnwrNAzFua8ww5w==", {    
       method: "POST",
@@ -57,7 +57,7 @@ function App() {
     });
     const data = await res.json();
     console.log("recieved JSON as string: ", JSON.stringify(data));
-   
+
     setWorkItems(data.workItems);
     setChatResponse(data.message);
     console.log("chatReponse:", chatResponse);
@@ -72,30 +72,42 @@ function App() {
 
   return (
     <Router>
-    <div className="container">
-    <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-           
-              {!workItems.length > 0 && <UserInput onInput={postChatRequest} />}
+      <div className="container">
+        <Routes>
+          <Route
+            path="/"
+            element={
 
-              {<ChatResponse chatResponse={chatResponse} />}
 
-              {workItems.length > 0 ? (
-                  <WorkItems workItems={workItems} />
-              ) : (
-                 <span>no workitems to show</span> 
-                )}
-            </>
-          }
-        />  
-    
-      </Routes> 
+              <div className="row">
+                <div className="col">       
+                  <div className="row">       
+                      {<ChatResponse chatResponse={chatResponse} />}
+                      {/* {!workItems.length > 0 && <UserInput onInput={postChatRequest} />} */}
+                  </div>
+                
+                  <div className="row alignBottom">
+                    <div className="col">
+                      {<UserInput onInput={postChatRequest} />}
+                    </div>
+                  </div>
+                </div>
 
-    </div>
-  </Router>
+
+                <div className="col">
+
+                  {workItems.length > 0 ? (
+                    <WorkItems workItems={workItems} />
+                  ) : (
+                    <span> - no workitems to snow - </span>
+                  )}
+                </div>
+              </div>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

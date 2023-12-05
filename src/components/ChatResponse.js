@@ -6,13 +6,15 @@ const ChatResponse = ({ chatResponse}) => {
 console.log("Chat response from chatReponse component:", chatResponse)
 
   return (
-    <div
-      className="header">
+    <div>
 
         {/* TODO make for each on properties */}
       <h3>
-      {"Message: "}{chatResponse}      
+      {"Message: "}    
       </h3>
+      <span>
+      {chatResponse}  
+        </span>
     </div>
   );
 };

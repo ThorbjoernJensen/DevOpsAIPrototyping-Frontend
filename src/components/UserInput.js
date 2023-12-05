@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const UserInput = ({ onInput }) => {
   const [input, setInput] = useState("");
 
@@ -26,7 +27,7 @@ const UserInput = ({ onInput }) => {
           />
         </div>
        
-        <input className="btn btn-block" type="submit" value="Submit" />
+        <input className="btn btn-primary" type="submit" value="Submit" />
       </form>
     </div>
   );

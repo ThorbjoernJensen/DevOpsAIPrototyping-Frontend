@@ -7,7 +7,8 @@ console.log("title:" + title)
 
   return (
     <div
-      className="reminder">
+    className="reminder">
+      {/* className="reminder"> */}
 
         {/* TODO make for each on properties */}
       <h3>
